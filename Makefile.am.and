@@ -3,7 +3,7 @@ AM_LDFLAGS = -llog -fPIE -pie
 #AM_CFLAGS = -llog -fPIE -pie -mhard-float -D_NDK_MATH_NO_SOFTFP=1 -march=armv7-a -mfloat-abi=hard
 #AM_CFLAGS = -msse2 -m32 -masm=intel
 AUTOMAKE_OPTIONS = foreign
-SUBDIRS = src tests 
+SUBDIRS = src tests
 EXTRA_DIST=COPYRIGHT ffts.pc.in build_iphone.sh build_android.sh
 ACLOCAL_AMFLAGS = -Im4
 AM_CFLAGS=-fPIC -fpic

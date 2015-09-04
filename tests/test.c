@@ -104,8 +104,14 @@ int test_transform(int n, int sign)
     float FFTS_ALIGN(32) *input = _mm_malloc(2 * n * sizeof(float), 32);
     float FFTS_ALIGN(32) *output = _mm_malloc(2 * n * sizeof(float), 32);
 #else
-    float FFTS_ALIGN(32) *input = valloc(2 * n * sizeof(float));
-    float FFTS_ALIGN(32) *output = valloc(2 * n * sizeof(float));
+   // float FFTS_ALIGN(32) *input = valloc(2 * n * sizeof(float));
+   // float FFTS_ALIGN(32) *output = valloc(2 * n * sizeof(float));
+/*	float *input;
+	float *output;
+	posix_memalign(&input,8,2 * n * sizeof(float));
+	posix_memalign(&output,8,2 * n * sizeof(float));*/
+	float FFTS_ALIGN(32) *input = malloc(2 * n * sizeof(float));
+	float FFTS_ALIGN(32) *output = malloc(2 * n * sizeof(float));
 #endif
     int i;
 
@@ -142,8 +148,10 @@ int main(int argc, char *argv[])
         float FFTS_ALIGN(32) *input = _mm_malloc(2 * n * sizeof(float), 32);
         float FFTS_ALIGN(32) *output = _mm_malloc(2 * n * sizeof(float), 32);
 #else
-        float FFTS_ALIGN(32) *input = valloc(2 * n * sizeof(float));
-        float FFTS_ALIGN(32) *output = valloc(2 * n * sizeof(float));
+//        float FFTS_ALIGN(32) *input = valloc(2 * n * sizeof(float));
+//      float FFTS_ALIGN(32) *output = valloc(2 * n * sizeof(float));
+        float FFTS_ALIGN(32) *input = malloc(2 * n * sizeof(float));
+		float FFTS_ALIGN(32) *output = malloc(2 * n * sizeof(float));
 #endif
 
         for (i = 0; i < n; i++) {
@@ -165,7 +173,7 @@ int main(int argc, char *argv[])
             printf("%d %d %f %f\n", i, sign, output[2*i], output[2*i+1]);
         ffts_free(p);
 
-#ifdef HAVE_NEON
+#ifdef HAVE_SSE
         _mm_free(input);
         _mm_free(output);
 #else

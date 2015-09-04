@@ -279,7 +279,13 @@ add_executable(ffts_test
   tests/test.c
 )
 
+#NDK's log print
+if(ANDROID_NDK)
+	set(ADB_LOG log)
+endif()
+
 target_link_libraries(ffts_test
+  ${ADB_LOG}
   ffts_static
   ${FFTS_EXTRA_LIBRARIES}
 )

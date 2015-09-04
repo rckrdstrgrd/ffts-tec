@@ -1,0 +1,9 @@
+# Load ffte targets from the build tree if necessary.
+set(_FFTE_TARGET "@_ffte_config_build_guard_target@")
+if(_FFTE_TARGET AND NOT TARGET "${_FFTE_TARGET}")
+  include("@FFTE_BINARY_DIR@/ffte-targets.cmake")
+endif()
+unset(_FFTE_TARGET)
+
+# Report the blas and ffte raw or imported libraries.
+set(FFTE_ffte_LIBRARIES "@FFTE_LIBRARIES@")

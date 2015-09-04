@@ -1,4 +1,6 @@
 
+#for .so
+AM_CFLAGS=-fPIC -fpic
 
 lib_LTLIBRARIES = libffts.la
 
