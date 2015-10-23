@@ -8,7 +8,7 @@ export CMAKE_BUILD_TYPE="Release"
 case $(uname -s) in
   Darwin)
     CONFBUILD=i386-apple-darwin`uname -r`
-    HOSTPLAT=darwin-x86
+    HOSTPLAT=darwin-`uname -m`
     CORE_COUNT=`sysctl -n hw.ncpu`
   ;;
   Linux)
@@ -27,7 +27,7 @@ export FFTS_SRC=`pwd`
 fi
 
 if [ -z "${NDK_ROOT_FORTRAN}"  ]; then
-	export NDK_ROOT=${HOME}/NDK/android-ndk-r10e
+	export NDK_ROOT=$NDK_ROOT
 	#export NDK_ROOT=${HOME}/NDK/android-ndk-r9
 else
 	export NDK_ROOT=${NDK_ROOT_FORTRAN}
